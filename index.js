@@ -14,7 +14,7 @@ app.post('/message', (req, res) => {
     res.send('OK')
 })
 
-app.listen(process.env.PORT | 3000, (err) => {
+app.listen(process.env.PORT || 3000, (err) => {
     if(err) return console.log('Error: ', err)
     console.log('Server is running on port 3000.')
 })
