@@ -4,12 +4,14 @@
   "description": "",
   "main": "crawl_power_cut.js",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
     "request": "^2.87.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node crawl_power_cut.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC"
