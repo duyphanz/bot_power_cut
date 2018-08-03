@@ -1,6 +1,6 @@
 var CronJob = require('node-cron');
 const utf8 = require('utf8');
-var local = "TÂN AN"
+var local = "CẦN GIUỘC"
 // var local = "CẦN GIUỘC"
 var lst_contacts = ['431795805', '684535102']
 var request = require('request');
@@ -29,7 +29,7 @@ var url = 'http://giadien.vietbao.vn/lich-cat-dien/long-an/ngay-' + d + '-' + m 
 
 //===================================
 
-CronJob.schedule('00 00 12 * * 0-6', function () {
+CronJob.schedule('00 00 18 * * 0-6', function () {
 
   getData()
     .then(values => {
