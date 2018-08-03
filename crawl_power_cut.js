@@ -2,6 +2,7 @@ var CronJob = require('node-cron');
 const utf8 = require('utf8');
 var local = "TÂN AN"
 // var local = "CẦN GIUỘC"
+var lst_contacts = ['431795805', '684535102']
 var request = require('request');
 
 var current = new Date()
@@ -36,9 +37,10 @@ CronJob.schedule('00 00 12 * * 0-6', function () {
       // console.log('Quantity: ', values.length)
       let rs = formatResponse(values)
       console.log('KQ: ', rs)
-      return sendMesage(rs)
+
+      return sendMesage(rs, lst_contacts)
     })
-    .then(res => console.log(res))
+    // .then(res => console.log(res))
     .catch(err => console.log(err))
 
 });
@@ -97,15 +99,18 @@ function getData() {
   })
 }
 
-function sendMesage(message) {
-  if(!message) return "no message"
+function sendMesage(message, ids) {
+  if (!message) return "no message"
   message = utf8.encode(message)
+
   return new Promise((resolve, reject) => {
-    let url = "https://api.telegram.org/bot458643110:AAGAyXPT386GgoeCK5whAO9HhbhJFWz2iP4/sendMessage?chat_id=431795805&text=" + message
-    request(url, (error, response) => {
-      if (error) return reject(error.message)
-      // console.log(response.body)
-      return resolve(response.body)
+    ids.forEach(id => {
+      let url = "https://api.telegram.org/bot458643110:AAGAyXPT386GgoeCK5whAO9HhbhJFWz2iP4/sendMessage?chat_id=" + id + "&text=" + message
+      request(url, (error, response) => {
+        if (error) return reject(error.message)
+        // console.log(response.body)
+        // return resolve(response.body)
+      })
     })
   })
 }
