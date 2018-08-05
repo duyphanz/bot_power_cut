@@ -48,7 +48,7 @@ CronJob.schedule('00 00 18 * * 0-6', function () {
       let lst_contacts = JSON.parse(res).contact_ids
       let lst_ids = []
       lst_contacts.forEach( e => {
-        lst_ids.push(e.id)
+        if(e.status === "on") lst_ids.push(e.id)
       })
       return sendMesage(rs, lst_ids)
     })
