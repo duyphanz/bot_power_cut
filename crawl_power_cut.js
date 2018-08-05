@@ -1,8 +1,9 @@
+var {getContacts} = require('./jsonbin')
 var CronJob = require('node-cron');
 const utf8 = require('utf8');
-var local = "CẦN GIUỘC"
+var local = "TÂN AN"
 // var local = "CẦN GIUỘC"
-var lst_contacts = ['431795805', '684535102']
+// var lst_contacts = ['431795805', '684535102']
 var request = require('request');
 
 var current = new Date()
@@ -28,19 +29,25 @@ var url = 'http://giadien.vietbao.vn/lich-cat-dien/long-an/ngay-' + d + '-' + m 
 //   .catch(err => console.log(err))
 
 //===================================
+//'00 00 18 * * 0-6'
+CronJob.schedule('* * * * *', function () {
 
-CronJob.schedule('00 00 18 * * 0-6', function () {
-
+  var rs
   getData()
     .then(values => {
       // console.log(values)
       // console.log('Quantity: ', values.length)
-      let rs = formatResponse(values)
+      rs = formatResponse(values)
       console.log('KQ: ', rs)
+      return getContacts()
 
-      return sendMesage(rs, lst_contacts)
+      // return sendMesage(rs, lst_contacts)
     })
     // .then(res => console.log(res))
+    .then(res => {
+      let lst_contacts = JSON.parse(res).contact_ids
+      return sendMesage(rs, lst_contacts)
+    })
     .catch(err => console.log(err))
 
 });
