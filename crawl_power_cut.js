@@ -30,7 +30,7 @@ var url = 'http://giadien.vietbao.vn/lich-cat-dien/long-an/ngay-' + d + '-' + m 
 
 //===================================
 //'00 00 18 * * 0-6'
-CronJob.schedule('00 25 07 * * 0-6', function () {
+CronJob.schedule('00 31 07 * * 0-6', function () {
 
   var rs
   getData()
@@ -54,7 +54,7 @@ CronJob.schedule('00 25 07 * * 0-6', function () {
     })
     .catch(err => console.log(err))
 
-});
+},true);
 
 // CronJob.schedule('* * * * *', function () {
 //   sendMesage('running every minute.')
