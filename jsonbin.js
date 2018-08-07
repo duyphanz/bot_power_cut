@@ -1,9 +1,10 @@
 var request = require('request')
+var {token} = require('./token')
 
 function getContacts(){
     return new Promise((resolve, reject) => {
         let headers = {
-            'secret-key': '$2a$10$4.ezwLNk4F3EB3EC3J4iweuAdByjp6uvDnWzlUd.2sAsv9dpprKNq'
+            'secret-key': token
         }
         let url = "https://api.jsonbin.io/b/5b6531347b212953678aa225/2"
         request({url, headers}, (err, res) => {
@@ -34,7 +35,7 @@ function getContacts(){
 function updateContacts(json){
     return new Promise((resolve, reject) => {
         let headers = {
-            'secret-key': '$2a$10$4.ezwLNk4F3EB3EC3J4iweuAdByjp6uvDnWzlUd.2sAsv9dpprKNq',
+            'secret-key': token,
             'Content-Type': 'application/json',
             'versioning': false
         }

@@ -1,4 +1,5 @@
 var {getContacts} = require('./jsonbin')
+var {token} = require('./token')
 var CronJob = require('cron').CronJob;
 const utf8 = require('utf8');
 var local = "CẦN GIUỘC"
@@ -117,7 +118,7 @@ function sendMesage(message, ids) {
 
   return new Promise((resolve, reject) => {
     ids.forEach(id => {
-      let url = "https://api.telegram.org/bot458643110:AAGAyXPT386GgoeCK5whAO9HhbhJFWz2iP4/sendMessage?chat_id=" + id + "&text=" + message
+      let url = "https://api.telegram.org/bot" + token + "/sendMessage?chat_id=" + id + "&text=" + message
       request(url, (error, response) => {
         if (error) return reject(error.message)
         // console.log(response.body)
